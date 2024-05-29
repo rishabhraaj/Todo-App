@@ -1,0 +1,12 @@
+.inputBox{
+  height:3rem;
+  width:100%;
+  border:1px solid grey;
+  border-radius:3px;
+  margin:5px;
+  padding:1rem;
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
