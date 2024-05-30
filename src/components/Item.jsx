@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./InputValues.module.css";
+import { MdDeleteForever } from "react-icons/md";
 
 function Item({ item, onDeleteClick }) {
   return (
@@ -12,7 +13,8 @@ function Item({ item, onDeleteClick }) {
             className={`btn btn-danger ${styles.inputBox}`}
             onClick={() => onDeleteClick(item.name)}
           >
-            Delete
+            Delete &nbsp;
+            <MdDeleteForever />
           </button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./InputValues.module.css";
+import { RiAddLargeLine } from "react-icons/ri";
 
 const InputValues = ({ onNewItem }) => {
   let [todoName, setTodoName] = useState("");
@@ -45,7 +46,8 @@ const InputValues = ({ onNewItem }) => {
               className={`btn btn-success ${styles.inputBox}`}
               onClick={handleAddButton}
             >
-              Add
+              Add &nbsp;
+              <RiAddLargeLine />
             </button>
           </div>
         </div>
