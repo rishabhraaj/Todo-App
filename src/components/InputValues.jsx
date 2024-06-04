@@ -1,23 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useRef } from "react";
+import { TodoItemsContext } from "../store/todo-item-store";
 import styles from "./InputValues.module.css";
-import { RiAddLargeLine } from "react-icons/ri";
 
-const InputValues = ({ onNewItem }) => {
-  let [todoName, setTodoName] = useState("");
-  let [dueDate, setDueDate] = useState("");
-
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-
-  const handleDueDate = (event) => {
-    setDueDate(event.target.value);
-  };
+const InputValues = () => {
+  const { addNewItem } = useContext(TodoItemsContext);
+  const todoNameElement = useRef("");
+  const dueDateElement = useRef("");
 
   const handleAddButton = () => {
-    onNewItem(todoName, dueDate);
-    setTodoName("");
-    setDueDate("");
+    const todoName = todoNameElement.current.value;
+    const dueDate = dueDateElement.current.value;
+    todoNameElement.current.value = "";
+    dueDateElement.current.value = "";
+    addNewItem(todoName, dueDate);
   };
 
   return (
@@ -28,17 +23,15 @@ const InputValues = ({ onNewItem }) => {
             <input
               type="text"
               placeholder="Enter todo here"
+              ref={todoNameElement}
               className={styles.inputBox}
-              value={todoName}
-              onChange={handleNameChange}
             />
           </div>
           <div className="col-4">
             <input
               type="date"
+              ref={dueDateElement}
               className={styles.inputBox}
-              value={dueDate}
-              onChange={handleDueDate}
             />
           </div>
           <div className="col-2">
@@ -46,8 +39,7 @@ const InputValues = ({ onNewItem }) => {
               className={`btn btn-success ${styles.inputBox}`}
               onClick={handleAddButton}
             >
-              Add &nbsp;
-              <RiAddLargeLine />
+              Add
             </button>
           </div>
         </div>

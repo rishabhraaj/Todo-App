@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./InputValues.module.css";
-import { MdDeleteForever } from "react-icons/md";
+import { TodoItemsContext } from "../store/todo-item-store";
 
-function Item({ item, onDeleteClick }) {
+function Item({ item }) {
+  const { deleteItem } = useContext(TodoItemsContext);
   return (
     <>
       <div className="row">
@@ -11,10 +12,9 @@ function Item({ item, onDeleteClick }) {
         <div className="col-2">
           <button
             className={`btn btn-danger ${styles.inputBox}`}
-            onClick={() => onDeleteClick(item.name)}
+            onClick={() => deleteItem(item.name)}
           >
-            Delete &nbsp;
-            <MdDeleteForever />
+            Delete
           </button>
         </div>
       </div>
